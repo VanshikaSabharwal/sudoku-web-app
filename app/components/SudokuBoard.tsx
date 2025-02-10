@@ -105,15 +105,17 @@ const SudokuBoard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <h1 className="text-2xl text-black font-bold mb-4">Sudoku Solver</h1>
+    <div className="flex flex-col items-center p-2 sm:p-4">
+      <h1 className="text-lg sm:text-2xl text-black font-bold mb-2 sm:mb-4">
+        Sudoku Solver
+      </h1>
 
       {/* Display Lives */}
-      <div className="flex mb-4">
+      <div className="flex mb-3 sm:mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <span
             key={i}
-            className={`text-xl mx-1 ${
+            className={`text-lg sm:text-xl mx-0.5 sm:mx-1 ${
               i < lives ? "text-red-500" : "text-gray-300"
             }`}
           >
@@ -123,7 +125,7 @@ const SudokuBoard: React.FC = () => {
       </div>
 
       {/* Sudoku Grid */}
-      <div className="grid grid-cols-9 gap-1 border-2 border-black p-2">
+      <div className="grid grid-cols-9 gap-0.5 sm:gap-1 border-2 border-black p-1 sm:p-2">
         {grid.map((row, i) =>
           row.map((num, j) => (
             <input
@@ -131,7 +133,7 @@ const SudokuBoard: React.FC = () => {
               type="text"
               value={num === 0 ? "" : num}
               onChange={(e) => handleChange(e, i, j)}
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-center border text-black border-gray-500 text-lg font-bold"
+              className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 text-center border text-black border-gray-500 text-xs sm:text-sm md:text-lg font-bold"
               style={{
                 backgroundColor:
                   originalGrid[i][j] !== 0 ? "lightgray" : "white",
@@ -148,28 +150,28 @@ const SudokuBoard: React.FC = () => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-3 sm:mt-4 flex flex-wrap gap-1 sm:gap-2 justify-center">
         <button
           onClick={handleHint}
-          className="px-4 py-2 bg-orange-500 text-white rounded-md"
+          className="px-3 py-1 sm:px-4 sm:py-2 bg-orange-500 text-white text-xs sm:text-sm rounded-md"
         >
           Hint (-1 ❤️)
         </button>
         <button
           onClick={handleSubmit}
-          className="px-4 py-2 bg-purple-500 text-white rounded-md"
+          className="px-3 py-1 sm:px-4 sm:py-2 bg-purple-500 text-white text-xs sm:text-sm rounded-md"
         >
           Submit
         </button>
         <button
           onClick={handleSolve}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md"
+          className="px-3 py-1 sm:px-4 sm:py-2 bg-blue-500 text-white text-xs sm:text-sm rounded-md"
         >
           Solve
         </button>
         <button
           onClick={handleNewGame}
-          className="px-4 py-2 bg-green-500 text-white rounded-md"
+          className="px-3 py-1 sm:px-4 sm:py-2 bg-green-500 text-white text-xs sm:text-sm rounded-md"
         >
           New Game
         </button>
