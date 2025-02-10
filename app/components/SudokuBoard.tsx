@@ -54,7 +54,7 @@ const SudokuBoard: React.FC = () => {
     row: number,
     col: number
   ) => {
-    let value = e.target.value;
+    const value = e.target.value;
 
     // Allow clearing the cell
     if (value === "") {
