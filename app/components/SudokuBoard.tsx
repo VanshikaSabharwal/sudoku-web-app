@@ -131,7 +131,7 @@ const SudokuBoard: React.FC = () => {
       </div>
 
       {/* Sudoku Grid */}
-      <div className="grid grid-cols-9 gap-0.5 sm:gap-1 border-2 border-black p-1 sm:p-2">
+      <div className="w-full max-w-[90vw] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] aspect-square grid grid-cols-9 gap-0.5 sm:gap-1 border-2 border-black p-1 sm:p-2">
         {grid.map((row, i) =>
           row.map((num, j) => (
             <input
@@ -139,7 +139,7 @@ const SudokuBoard: React.FC = () => {
               type="text"
               value={num === 0 ? "" : num}
               onChange={(e) => handleChange(e, i, j)}
-              className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 text-center border text-black border-gray-500 text-xs sm:text-sm md:text-lg font-bold"
+              className="w-full aspect-square text-center border border-gray-500 text-xs sm:text-sm md:text-lg font-bold"
               style={{
                 backgroundColor:
                   originalGrid[i][j] !== 0 ? "lightgray" : "white",
