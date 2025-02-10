@@ -21,6 +21,7 @@ const SudokuBoard: React.FC = () => {
   const [hintCell, setHintCell] = useState<{ row: number; col: number } | null>(
     null
   );
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   // Generate a new puzzle
   const handleNewGame = () => {
@@ -34,6 +35,7 @@ const SudokuBoard: React.FC = () => {
     setLives(5);
     setSolved(false);
     setHintCell(null);
+    setGameOver(false);
 
     toast.info("🆕 New Sudoku Puzzle Generated!", { autoClose: 2000 });
   };
@@ -96,6 +98,10 @@ const SudokuBoard: React.FC = () => {
         setLives(lives - 1);
 
         toast.warn("💔 1 Life Taken!", { autoClose: 2000 });
+
+        if (lives - 1 === 0) {
+          setTimeout(() => setGameOver(true), 500);
+        }
       } else {
         toast.info("No empty cells left!", { autoClose: 2000 });
       }
@@ -119,7 +125,7 @@ const SudokuBoard: React.FC = () => {
               i < lives ? "text-red-500" : "text-gray-300"
             }`}
           >
-            ❤️
+            {i < lives ? "❤️" : "💔"}
           </span>
         ))}
       </div>
@@ -176,6 +182,22 @@ const SudokuBoard: React.FC = () => {
           New Game
         </button>
       </div>
+
+      {/* Game Over Modal */}
+      {gameOver && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h2 className="text-xl font-bold text-red-600">Game Over!</h2>
+            <p className="text-gray-700">You lost all your lives.</p>
+            <button
+              onClick={handleNewGame}
+              className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
 
       <ToastContainer position="top-right" />
     </div>
