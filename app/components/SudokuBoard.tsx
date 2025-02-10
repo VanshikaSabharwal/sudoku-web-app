@@ -137,6 +137,9 @@ const SudokuBoard: React.FC = () => {
             <input
               key={`${i}-${j}`}
               type="text"
+              inputMode="numeric"
+              pattern="[1-9]"
+              maxLength={1}
               value={num === 0 ? "" : num}
               onChange={(e) => handleChange(e, i, j)}
               className="w-full aspect-square text-center border border-gray-500 text-xs sm:text-sm md:text-lg font-bold"
