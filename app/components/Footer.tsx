@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-black text-white py-5 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
         <h2 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">
-          Let's Connect!
+          Let&apos;s Connect!
         </h2>
         <p className="text-xs sm:text-sm text-gray-400 mb-3 sm:mb-4 max-w-xs sm:max-w-md">
           Feel free to reach out through any of the platforms below.

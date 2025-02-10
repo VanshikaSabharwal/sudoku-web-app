@@ -54,15 +54,25 @@ const SudokuBoard: React.FC = () => {
     row: number,
     col: number
   ) => {
-    const value = e.target.value;
-    const num = value === "" ? 0 : parseInt(value, 10);
+    let value = e.target.value;
 
+    // Allow clearing the cell
+    if (value === "") {
+      const newGrid = grid.map((r, i) =>
+        r.map((c, j) => (i === row && j === col ? 0 : c))
+      );
+      setGrid(newGrid);
+      return;
+    }
+
+    const num = parseInt(value, 10);
+
+    // Allow only numbers 1-9
     if (!isNaN(num) && num >= 1 && num <= 9) {
       const newGrid = grid.map((r, i) =>
         r.map((c, j) => (i === row && j === col ? num : c))
       );
       setGrid(newGrid);
-      setHintCell(null);
     }
   };
 
@@ -136,9 +146,10 @@ const SudokuBoard: React.FC = () => {
           row.map((num, j) => (
             <input
               key={`${i}-${j}`}
-              type="number"
-              min="1"
-              max="9"
+              type="text"
+              inputMode="numeric"
+              pattern="[1-9]"
+              maxLength={1}
               value={num === 0 ? "" : num}
               onChange={(e) => handleChange(e, i, j)}
               className="w-full aspect-square text-center border border-gray-500 text-xs sm:text-sm md:text-lg font-bold"
